@@ -1,1 +1,11 @@
-my first git project
+1.词表基本概念
+ 主题词（main headings）：在标引和检索中用以表达文献主题的规范化的词或词组。
+  如：Neoplasms(肿瘤)
+ 副主题词(subheadings) ：论述主题某一方面内容的词，对文献主题起限定作用。
+  如：drug therapy(药物疗法)
+ 类目词：保证分类体系完整设立的一类词，通常都是一些学科范围较大的词，不作为主题词使用。
+  字顺表中用NON MESH标识。
+  如：Nutritional and Metabolic Disease（NON MESH）营养代谢疾病
+ 特证词：用于表达文献中的某些特征。包括对象特征词、时间特证词、位置特证词和文献类型特证词。
+  其作用在于检索时对文献集合中有某特征的文献进行限定或排除。
+  如：Human
