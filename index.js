@@ -11,6 +11,8 @@ app.get('/', routes.index);
 app.get('/jsonp/:id', routes.jsonp);
 app.get('/tree/:id', routes.tree);
 app.get('/MBrowser/:id', routes.MBrowser);
+app.get('/EBrowser/:id', routes.EBrowser);
+app.get('/CBrowser/:id', routes.CBrowser);
 app.get('/qual/:id', routes.qual);
 app.get('/:id', routes.index);
 app.get('*', routes.error);

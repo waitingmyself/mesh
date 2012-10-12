@@ -11,61 +11,81 @@ html
      span.brand MeSH Descriptor Data
      a.btn.btn-small(href='../tree/#{DescriptorName.String}') Tree View
      span.divider-vertical
-     a.btn.btn-small(href='../CBrowser/#{DescriptorUI}') Standard Concept View
+     a.btn.btn-small(href='../MBrowser/#{DescriptorUI}') Standard View
      span.divider-vertical
      a.btn.btn-small(href='../EBrowser/#{DescriptorUI}') Expanded Concept View
      span.divider-vertical
      a.btn.btn-small(href='/')
       i.icon-home
   center
-   table.table.table-bordered(style="width:98%")
+   table.table.table-bordered.table-condensed(style="width:98%")
     tr
      td(width="150")
       strong MeSH Heading
-     td #{DescriptorName.String}
+     td(colspan="3") #{DescriptorName.String}
     - if(zh && zh.String)
      tr
       td
        strong 主题词中译名
-      td #{zh.String}
+      td(colspan="3") #{zh.String}
     - for(var i = 0; i < TreeNumberList.length;i++)
      tr
       td
        strong Tree Number
-      td
+      td(colspan="3")
        code(style="color:#000;")=TreeNumberList[i]
     - if(Annotation)
      tr
       td
        strong Annotation
-      td=Annotation
-    - var scopeNote = '';  
+      td(colspan="3")=Annotation
+    - var rowspan = 0;
     - for(var i = 0; i < ConceptList.length; i++)
-     scopeNote = scopeNote + (ConceptList[i].ScopeNote || '')
-    - if(scopeNote)
+     rowspan = ConceptList[i].TermList.length+4;
+     tr
+      td(rowspan=rowspan)
+       strong Concept #{i+1}
+       - if(ConceptList[i].PreferredConceptYN == 'Y')
+        p (Preferred)
+       - if(ConceptList[i].PreferredConceptYN == 'N' && ConceptList[i].ConceptRelationList[0].RelationName == 'NRW')
+        p (Narrower)
+       - if(ConceptList[i].PreferredConceptYN == 'N' && ConceptList[i].ConceptRelationList[0].RelationName == 'BRD')
+        p (Broader)
+       - if(ConceptList[i].PreferredConceptYN == 'N' && ConceptList[i].ConceptRelationList[0].RelationName == 'REL')
+        p (Related)
+      td(colspan="3")=ConceptList[i].ConceptName.String
+     tr
+      td(width="100px;")
+       strong Concept UI
+      td(colspan="2")=ConceptList[i].ConceptUI
      tr
       td
        strong Scope Note
-      td=scopeNote
-    - for(var i = 0; i < ConceptList.length; i++)
+      td(colspan="2")=ConceptList[i].ScopeNote
+     tr
+      td
+       strong Semantic Type
+      td(colspan="2")=ConceptList[i].SemanticTypeList[0].SemanticTypeUI
+       |(
+       =ConceptList[i].SemanticTypeList[0].SemanticTypeName
+       |)
      - for(var j = 0; j < ConceptList[i].TermList.length; j++)
-      - if(ConceptList[i].TermList[j].IsPermutedTermYN == 'N' && !(ConceptList[i].TermList[j].ConceptPreferredTermYN == 'Y' && ConceptList[i].TermList[j].RecordPreferredTermYN == 'Y'))
-       tr
-        td
-         strong Entry Term
-        td=ConceptList[i].TermList[j].String
+      tr
+       td
+        strong Term
+       td(colspan="2")=ConceptList[i].TermList[j].String
     - if(SeeRelatedList && SeeRelatedList.length > 0)
      - for(var i = 0; i < SeeRelatedList.length; i++)
        tr
         td
          strong See Also
-        td
+        td(colspan="3")
          a(href=SeeRelatedList[i].DescriptorReferredTo.DescriptorUI)=SeeRelatedList[i].DescriptorReferredTo.DescriptorName.String
     - if(AllowableQualifiersList && AllowableQualifiersList.length > 0)
        tr
         td
          strong Allowable Qualifiers
-        td
+        td(colspan="3")
          - for(var i = 0; i < AllowableQualifiersList.length; i++)
           a(href='../qual/#{AllowableQualifiersList[i].Abbreviation}')=AllowableQualifiersList[i].Abbreviation
           &nbsp; 
@@ -76,14 +96,14 @@ html
        tr
          td
           strong Previous Indexing
-         td
+         td(colspan="3")
            a(href=key)=key
            =year
     - if(HistoryNote)
        tr
          td
           strong History Note
-         td=HistoryNote
+         td(colspan="3")=HistoryNote
     - var entryVersion = '';
     - for(var i = 0; i < ConceptList.length; i++)
      - for(var j = 0; j < ConceptList[i].TermList.length; j++)
@@ -93,16 +113,16 @@ html
      tr
       td
        strong Entry Version
-      td=entryVersion
+      td(colspan="3")=entryVersion
     - if(DateCreated)
        tr
          td
           strong Date of Entry
-         td
+         td(colspan="3")
           em=DateCreated.Year
            =DateCreated.Month
            =DateCreated.Day
     tr
      td
       strong Unique ID
-     td=DescriptorUI
+     td(colspan="3")=DescriptorUI

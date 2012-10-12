@@ -66,7 +66,7 @@ exports.tree = function(req, res) {
 	});
 };
 
-exports.MBrowser = function(req, res) {
+function commonSearch(req,res,render) {
 	var keyword = req.params.id;
 	if(/D\d{6}/.test(keyword)) {
 		query = {
@@ -81,11 +81,21 @@ exports.MBrowser = function(req, res) {
 	}
 	service.Descriptor_2013.find(query, function(err, items) {
 		if(items && items.length > 0) {
-			res.render('MBrowser', items[0]);
+			res.render(render, items[0]);
 		} else {
 			res.send('no result');
 		}
 	});
+}
+
+exports.MBrowser = function(req, res) {
+	commonSearch(req,res,'MBrowser');
+};
+exports.EBrowser = function(req, res) {
+	commonSearch(req,res,'EBrowser');
+};
+exports.CBrowser = function(req, res) {
+	commonSearch(req,res,'CBrowser');
 };
 
 exports.qual = function(req, res) {
