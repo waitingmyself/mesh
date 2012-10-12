@@ -1,0 +1,120 @@
+!!! 5
+html
+ head
+   title MeSH Tree Structures
+   meta(charset="utf-8")
+   style span{padding-left:5px;color:orange;} span code{color:orange;background-color:white;}
+   link(rel="stylesheet")(href="../bootstrap/css/bootstrap.min.css")(type="text/css")
+   script(src="../jquery-1.8.0.min.js")
+   script(src="../index.js")
+ body(style="padding-top:45px;")
+  .navbar.navbar-fixed-top
+   .navbar-inner
+    .container.pull-left(style="padding-left:5px;")
+     span.brand MeSH Tree Structures
+     a.btn.btn-small(href='../MBrowser/#{DescriptorUI}') Standard View
+     span.divider-vertical
+     a.btn.btn-small(href='/')
+      i.icon-home
+  div
+   h4
+    em #{DescriptorName.String} #{zh.String}
+   span(id="key")(style="display:none;")=DescriptorName.String
+   ul
+    - for(var i = 0 ; i < tree.length;i++)
+     children1 = tree[i].children;
+      li
+       a(href=tree[i].DescriptorName.String)=tree[i].DescriptorName.String
+       span=tree[i].zh&&tree[i].zh.String
+       span
+        code=tree[i].key
+      - if(children1 && children1.length > 0)
+       ul
+        - for(var j = 0; j < children1.length;j++)
+         children2 = children1[j].children
+         li
+          a(href=children1[j].DescriptorName.String)=children1[j].DescriptorName.String
+          span=children1[j].zh&&children1[j].zh.String
+          span
+           code=children1[j].key
+          - if(children2 && children2.length > 0)
+           ul
+            - for(var k = 0; k < children2.length;k++)
+             children3 = children2[k].children
+             li
+              a(href=children2[k].DescriptorName.String)=children2[k].DescriptorName.String
+              span=children2[k].zh&&children2[k].zh.String
+              span
+               code=children2[k].key
+              - if(children3 && children3.length > 0)
+               ul
+                - for(var m = 0; m < children3.length;m++)
+                 children4 = children3[m].children
+                 li
+                  a(href=children3[m].DescriptorName.String)=children3[m].DescriptorName.String
+                  span=children3[m].zh&&children3[m].zh.String
+                  span
+                   code=children3[m].key
+                  - if(children4 && children4.length > 0)
+                   ul
+                    - for(var n = 0; n < children4.length;n++)
+                     children5 = children4[n].children
+                     li
+                      a(href=children4[n].DescriptorName.String)=children4[n].DescriptorName.String
+                      span=children4[n].zh&&children4[n].zh.String
+                      span
+                       code=children4[n].key
+                      - if(children5 && children5.length > 0)
+                       ul
+                        - for(var p = 0; p < children5.length;p++)
+                         children6 = children5[p].children
+                         li
+                          a(href=children5[p].DescriptorName.String)=children5[p].DescriptorName.String
+                          span=children5[p].zh&&children5[p].zh.String
+                          span
+                           code=children5[p].key
+                          - if(children6 && children6.length > 0)
+                           ul
+                            - for(var q = 0; q < children6.length;q++)
+                             children7 = children6[q].children
+                             li
+                              a(href=children6[q].DescriptorName.String)=children6[q].DescriptorName.String
+                              span=children6[q].zh&&children6[q].zh.String
+                              span
+                               code=children6[q].key
+                              - if(children7 && children7.length > 0)
+                               ul
+                                - for(var w = 0; w < children7.length;w++)
+                                 children8 = children7[w].children
+                                 li
+                                  a(href=children7[w].DescriptorName.String)=children7[w].DescriptorName.String
+                                  span=children7[w].zh&&children7[w].zh.String
+                                  span
+                                   code=children7[w].key
+                                  - if(children8 && children8.length > 0)
+                                   ul
+                                   - for(var x = 0; x < children8.length;x++)
+                                    children9 = children8[x].children
+                                    li
+                                     a(href=children8[x].DescriptorName.String)=children8[x].DescriptorName.String
+                                     span=children8[x].zh&&children8[x].zh.String
+                                     span
+                                      code=children8[x].key
+                                     - if(children9 && children9.length > 0)
+                                      ul
+                                      - for(var y = 0; y < children9.length;y++)
+                                       children10 = children9[y].children
+                                       li
+                                        a(href=children9[y].DescriptorName.String)=children9[y].DescriptorName.String
+                                        span=children9[y].zh&&children9[y].zh.String
+                                        span
+                                         code=children9[y].key
+                                        - if(children10 && children10.length > 0)
+                                         ul
+                                         - for(var z = 0; z < children10.length;z++)
+                                          children11 = children10[z].children
+                                          li
+                                           a(href=children10[z].DescriptorName.String)=children10[z].DescriptorName.String
+                                           span=children10[z].zh&&children10[z].zh.String
+                                           span
+                                            code=children10[z].key
