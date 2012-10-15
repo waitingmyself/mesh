@@ -4,30 +4,20 @@ function isZh(str) {
 
 var service = require('./MongoService');
 
-// TODO 权限控制
 exports.auth_user = function(req, res, next) {
 	if(req.session && req.session.login_user) {
-		console.log('has session');
-		console.log(req.session.login_user);
 		next();
 	} else {
-		console.log('no session');
 		var cookie = req.cookies && req.cookies['login_user'];
 		if(cookie) {
-			console.log('has cookie');
-			console.log(cookie);
 			req.session.login_user = cookie;
 			next();
 		} else {
-			console.log('no cookie');
-			console.log(req.path);
 			if(req.path == '/login_init' || req.path == '/login') {
 				next();
 			} else {
 				res.redirect('/login_init');
 			}
-			//res.cookie('login_user', 'lxg', {path: '/',maxAge: 1000*60*60*24*30});
-			//req.session.login_user = 'lxg';
 		}
 	}
 }

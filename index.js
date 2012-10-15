@@ -7,6 +7,13 @@ app.set('view engine', 'jade');
 
 var routes = require('./Routes');
 
+app.use(function(req,res,next){
+	var d = new Date();
+	console.log('[' + d.getFullYear() + '/' + (d.getMonth() + 1) + '/' +  d.getUTCDate () 
+		+ ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '] '
+		+ req.ip + ':' + req.path);
+	next();
+});
 app.use(express.cookieParser());
 app.use(express.session({
 	secret: 'ky'
