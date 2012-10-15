@@ -7,7 +7,17 @@ app.set('view engine', 'jade');
 
 var routes = require('./Routes');
 
+app.use(express.cookieParser());
+app.use(express.session({
+	secret: 'ky'
+}));
+app.use(express.bodyParser());
+app.use(routes.auth_user);
+
 app.get('/', routes.index);
+app.post('/login', routes.login);
+app.get('/logout', routes.logout);
+app.get('/login_init', routes.login_init);
 app.get('/jsonp/:id', routes.jsonp);
 app.get('/tree/:id', routes.tree);
 app.get('/MBrowser/:id', routes.MBrowser);

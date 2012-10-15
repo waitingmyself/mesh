@@ -1,0 +1,13 @@
+html
+ head
+  title login
+  meta(charset="utf-8")
+  link(rel="stylesheet")(href="../bootstrap/css/bootstrap.min.css")(type="text/css")
+ body
+  div.container(style="margin-top:100px")
+   form.well(action='login')(method='post')(style="width:200px;")
+    label username:
+    input(name="username")(type="text")(value="admin")
+    label password:
+    input(name="password")(type="password")(value="kingyee")
+    input.btn(type="submit")(value="login")
