@@ -26,11 +26,11 @@ exports.login = function(req, res, next) {
 	var username = req.body.username;
 	var password = req.body.password;
 	if('admin' == username && 'kingyee' == password) {
-		res.cookie('login_user', name, {
+		res.cookie('login_user', username, {
 			path: '/',
 			maxAge: 1000 * 60 * 60 * 24 * 30
 		});
-		req.session.login_user = name;
+		req.session.login_user = username;
 		res.redirect('/');
 	} else {
 		res.render('login');
