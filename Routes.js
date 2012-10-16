@@ -5,6 +5,10 @@ function isZh(str) {
 var service = require('./MongoService');
 
 exports.auth_user = function(req, res, next) {
+	if(req.path == '/login_init' || req.path == '/login' || req.path == '/logout') {
+		next();
+		return;
+	}
 	if(req.session && req.session.login_user) {
 		next();
 	} else {
@@ -13,11 +17,7 @@ exports.auth_user = function(req, res, next) {
 			req.session.login_user = cookie;
 			next();
 		} else {
-			if(req.path == '/login_init' || req.path == '/login') {
-				next();
-			} else {
-				res.redirect('/login_init');
-			}
+			res.redirect('/login_init');
 		}
 	}
 }
