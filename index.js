@@ -7,6 +7,12 @@ app.set('view engine', 'jade');
 
 var routes = require('./Routes');
 
+// 日志 start
+var fs = require('fs');
+var accessLogFile = fs.createWriteStream('access.log',{flags:'a'});
+app.use(express.logger({stream:accessLogFile}));
+// 日志 end
+
 app.use(function(req,res,next){
 	var d = new Date();
 	console.log('[' + d.getFullYear() + '/' + (d.getMonth() + 1) + '/' +  d.getUTCDate () 
@@ -34,4 +40,9 @@ app.get('/qual/:id', routes.qual);
 app.get('/:id', routes.index);
 app.get('*', routes.error);
 
-app.listen(3000);
+if(!module.parent) {
+	app.listen(3000);
+	console.log('server started');
+}
+
+module.exports = app;
