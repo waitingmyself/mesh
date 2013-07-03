@@ -75,11 +75,11 @@ exports.jsonp = function(req, res) {
 		limit: 10
 	}, function(err, items) {
 		if(items && items.length > 0) {
-			res.json({
+			res.jsonp({
 				data: items
 			});
 		} else {
-			res.json({
+			res.jsonp({
 				data: []
 			});
 		}
